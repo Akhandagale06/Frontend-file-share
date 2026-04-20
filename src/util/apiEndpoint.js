@@ -5,7 +5,7 @@ const apiEndpoint ={
     GET_CREDITS : `${BASE_URL}/users/credits`,
     UPLOAD_FILE: `${BASE_URL}/files/upload`,
     TOGGLE_FILE: (id) => `${BASE_URL}/files/${id}/toggle-public`,
-    DOWNLOAD_FILE: (fileId) => `${BASE_URL}/files/download/${fileId}`,
+    DOWNLOAD_FILE: (id) => `${BASE_URL}/files/download/${id}`,
     DELETE_FILE: (id) => `${BASE_URL}/files/${id}`,
     SHARE_LINK: (id) => `${BASE_URL}/files/${id}/share-link`,
     CREATE_ORDER:`${BASE_URL}/payments/create-order`,
