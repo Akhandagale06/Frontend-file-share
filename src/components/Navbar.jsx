@@ -30,7 +30,7 @@ const Navbar = ({ activeMenu }) => {
 
                 </button>
                 <div className="flex items-center gap-2">
-                    <img src="/src/assets/logo3.png" alt="logo" className="w-18 h-18" />
+                    <img src="/logo3.png" alt="logo" className="w-18 h-18" />
                     {/* <Share2 className="text-blue-600"/> */}
                     <span className=" text-xl font-bold text-black truncate">FileShare</span>
                 </div>
