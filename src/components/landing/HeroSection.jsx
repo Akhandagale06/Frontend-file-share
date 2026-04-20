@@ -17,7 +17,7 @@ const HeroSection = ({ openSignIn, openSignUp }) => {
                             Collaborate faster with secure, real-time file sharing.
                         </p>
                         <div className="mt-10 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center">
-                            <div className="space-y-4 sm:space-y-0 sm:mx-auto sm:inline-grid sm:grid-cols-2 sm:gap-5">
+                            <div className="flex flex-col items-center space-y-4 sm:space-y-0 sm:mx-auto sm:inline-grid sm:grid-cols-2 sm:gap-5">
                                 <button 
                                     onClick={() => openSignUp()}
                                     className="bg-purple-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
