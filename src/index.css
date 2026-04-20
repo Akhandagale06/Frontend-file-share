@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+@import "tailwindcss";
+
+*{
+   font-family: 'Urbanist', sans-serif;
+}
+
+body {
+  overflow-y: auto;
+  min-height: 100vh;
+}
+
+.landing-page-content {
+  overflow: visible;
+}
+
+.card-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #4b5563;
+}
+
+.card-btn:hover {
+  color: #7c3aed;
+}
+
+.odd-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #16a34a;
+}
+
+@media (min-width: 768px) {
+  .odd-btn {
+    font-size: 0.875rem;
+  }
+}
+
+.add-btn-fill {
+  color: #ffffff;
+  background-color: #7c3aed;
+}
