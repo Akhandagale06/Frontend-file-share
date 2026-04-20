@@ -99,7 +99,7 @@ if(!file) return null;
     <header className="p-4 border-b bg-white">
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center gap-2">
-         <img src="/logo3.png" alt="logo" className="w-18 h-18" />
+         {/* <img src="/logo3.png" alt="logo" className="w-18 h-18" /> */}
           <span className="font-bold text-xl text-gray-800">File Share</span>
         </div>
         <button 
