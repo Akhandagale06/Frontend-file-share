@@ -53,7 +53,6 @@ const RecentFiles = ({ files = [] }) => {
           <Clock size={18} className="text-blue-500" />
           Recent Files
         </h2>
-        
       </div>
 
       <div className="divide-y divide-gray-50">
