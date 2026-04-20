@@ -53,9 +53,7 @@ const RecentFiles = ({ files = [] }) => {
           <Clock size={18} className="text-blue-500" />
           Recent Files
         </h2>
-        <a href="/my-files" className="text-xs font-semibold text-blue-600 hover:text-blue-700">
-          View All
-        </a>
+        
       </div>
 
       <div className="divide-y divide-gray-50">

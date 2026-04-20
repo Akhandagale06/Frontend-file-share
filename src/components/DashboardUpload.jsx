@@ -71,7 +71,7 @@ const DashboardUpload = ({
                     <File size={16} className="text-purple-500" />
                   </div>
                   <div className="min-w-0">
-                    <p className="text-sm font-medium text-gray-700 truncate max-w-[150px]">
+                    <p className="text-sm font-medium text-gray-700 truncate max-w-37.5">
                       {file.name}
                     </p>
                     <p className="text-[10px] text-gray-400">

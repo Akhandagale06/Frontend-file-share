@@ -8,11 +8,11 @@ import { UserCreditsContext } from "../context/UserCreditContext";
 
 const Navbar = ({ activeMenu }) => {
     const [openSideMenu, setOpenSideMenu] = useState(false);
-    const {credits,fetchUserCredits}=useContext(UserCreditsContext);
+    const { credits, fetchUserCredits } = useContext(UserCreditsContext);
 
-    useEffect(()=>{
+    useEffect(() => {
         fetchUserCredits();
-    },[fetchUserCredits])
+    }, [fetchUserCredits])
 
     return (
         <div className="flex items-center justify-between gap-5 bg-white border-b border-gray-200/50 backdrop:backdrop-blur-[2px] py-4 sm:px-7 sticky top-0 z-30">
@@ -40,7 +40,7 @@ const Navbar = ({ activeMenu }) => {
             <SignedIn>
                 <div className="flex items-center gap-5">
                     <Link to="/subscription">
-                       <CreditDisplay credits={credits}/>
+                        <CreditDisplay credits={credits} />
                     </Link>
                     <div className="relative">
                         <UserButton />
@@ -51,12 +51,12 @@ const Navbar = ({ activeMenu }) => {
 
             {/**mobile side  menu */}
 
-         {openSideMenu && (
-            <div className="fixed top-24 left-0 right-0 bg-white border-b border-gray-200 lg:hidden z-20">
-                {/**side menu */}
-               <SideMenu  activeMenu={activeMenu}/>
-            </div>
-         )}
+            {openSideMenu && (
+                <div className="fixed top-24 left-0 right-0 bg-white border-b border-gray-200 lg:hidden z-20">
+                    {/**side menu */}
+                    <SideMenu activeMenu={activeMenu} />
+                </div>
+            )}
 
 
         </div>

@@ -61,8 +61,8 @@ const PublicFileView = () => {
  const openShareModal =()=>{
   setShareModal({
     isOpen :true,
-   // link: window.location.href,
-     link :`${window.location.origin}/file/${fileId}`
+    link: window.location.href,
+    
   })
  }
   const closeShareModal =()=>{
