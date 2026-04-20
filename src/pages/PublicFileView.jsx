@@ -7,6 +7,8 @@ import toast from "react-hot-toast";
 import { Copy, Download, File, Info, Share2 } from "lucide-react";
 import LinkShareModal from "../components/LinkShareModal";
 
+import logo from "../assets/logo3.png";
+
 const PublicFileView = () => {
   const [file,setFile]=useState(null);
   const [error,setError]=useState(null);
@@ -15,7 +17,7 @@ const PublicFileView = () => {
     isOpen :false,
     link:""
   })
-  const {getToken}=useAuth();
+  const {getToken , isLoaded , isSignedIn}=useAuth();
   const{fileId}=useParams();
   useEffect(()=>{
     const getFile =async ()=>{
@@ -35,37 +37,40 @@ const PublicFileView = () => {
       }
     }
     getFile();
-  },[fileId,getToken])
+  },[fileId])
 
 
-  const handleDownload =async ()=>{
-  try {
-    const token = await getToken(); 
+  const handleDownload = async () => {
+    try {
+      const config = {
+        responseType: 'blob',
+      };
 
-    const response = await axios.get(
-      apiEndpoint.DOWNLOAD_FILE(fileId),
-      {
-        responseType: "blob",
-        headers: {
-          'Authorization': `Bearer ${token}`, 
-        },
+      // Only add Authorization header if user is signed in
+      if (isSignedIn) {
+        const token = await getToken();
+        if (token) {
+          config.headers = {
+            'Authorization': `Bearer ${token}`
+          };
+        }
       }
-    );
 
-    const url = window.URL.createObjectURL(new Blob([response.data]));
-    const link = document.createElement("a");
-    link.href = url;
-    link.setAttribute("download", file.name);
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
-    window.URL.revokeObjectURL(url);
+      const response = await axios.get(apiEndpoint.DOWNLOAD_FILE(fileId), config);
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", file.name);
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      window.URL.revokeObjectURL(url);
 
-  } catch (error) {
-    console.log("Downloading Failed:", error);
-    toast.error("Failed to download file. Please try again.");
+    } catch (error) {
+      console.log("Downloading Failed:", error);
+      toast.error("Failed to download file. Please try again.");
+    }
   }
-}
  const openShareModal =()=>{
   setShareModal({
     isOpen :true,
@@ -107,7 +112,7 @@ if(!file) return null;
     <header className="p-4 border-b bg-white">
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center gap-2">
-         {/* <img src="/logo3.png" alt="logo" className="w-18 h-18" /> */}
+         <img src={logo} alt="logo" className="w-18 h-18" />
           <span className="font-bold text-xl text-gray-800">File Share</span>
         </div>
         <button 
