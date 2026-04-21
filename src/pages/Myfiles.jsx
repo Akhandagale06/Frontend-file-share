@@ -70,10 +70,11 @@ const Myfiles = () => {
   }
 
   //handle file download
+    //handle file download
   const handleDownload = async(file)=>{
     try {
       const token = await getToken();
-      const response = await axios.get(apiEndpoint.DOWNLOAD_FILE(file.id), { headers: {' Authorization': `Bearer ${token}` },responseType:'blob' });
+      const response = await axios.get(apiEndpoint.DOWNLOAD_FILE(file.id), { headers: { 'Authorization': `Bearer ${token}` },responseType:'blob' });
       const url = window.URL.createObjectURL(new Blob([response.data]));
       const link = document.createElement("a");
       link.href = url;
@@ -103,7 +104,7 @@ const Myfiles = () => {
     if(!fileId) return;
     try {
       const token = await getToken();
-      const response = await axios.delete(apiEndpoint.DELETE_FILE(deleteConfirmationOpen.fileId), { headers: { Authorization: `Bearer ${token}` } });
+      const response = await axios.delete(apiEndpoint.DELETE_FILE(deleteConfirmationOpen.fileId), { headers: { 'Authorization': `Bearer ${token}` } });
       if(response.status === 204){
         setFiles(files.filter(file=> file.id !== fileId));
         closeDeleteConfirmation();

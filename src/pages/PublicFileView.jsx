@@ -39,10 +39,10 @@ const PublicFileView = () => {
 
 
     //handle file download
-  const handleDownload = async()=>{
+  const handleDownload =async ()=>{
     try {
-      const token = await getToken();
-      const response = await axios.get(apiEndpoint.DOWNLOAD_FILE(fileId), { headers: { 'Authorization': `Bearer ${token}` },responseType:'blob' });
+      
+      const response =await axios.get(apiEndpoint.DOWNLOAD_FILE(fileId),{responseType:'blob'});
       const url = window.URL.createObjectURL(new Blob([response.data]));
       const link = document.createElement("a");
       link.href = url;
@@ -52,11 +52,13 @@ const PublicFileView = () => {
       link.remove();
       window.URL.revokeObjectURL(url); //clean up url object
       
+
     } catch (error) {
       console.log("Downloading Failed:", error);
-      toast.error("Failed to download file. Please try again.", error.message);
+       toast.error("Failed to download file. Please try again.");
+      
     }
-  };
+  }
  const openShareModal =()=>{
   setShareModal({
     isOpen :true,
@@ -134,7 +136,7 @@ if(!file) return null;
           </div>
           <div className="flex justify-center gap-4 my-8">
             <button
-            onClick={()=>handleDownload(fileId)}
+            onClick={handleDownload}
              className="flex items-center gap-2 px-6 py-3 bg-gray-600 text-white rounded-full cursor-pointer">
               <Download size={18}/>
               Download File
