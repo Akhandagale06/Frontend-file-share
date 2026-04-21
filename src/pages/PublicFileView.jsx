@@ -38,7 +38,6 @@ const PublicFileView = () => {
   },[fileId,getToken])
 
 
-    //handle file download
   const handleDownload =async ()=>{
     try {
       
@@ -54,21 +53,16 @@ const PublicFileView = () => {
       
 
     } catch (error) {
-      console.error("Downloading Failed:", error?.response?.status, error?.response?.data, error);
-      if (error.response?.status === 403) {
-        toast.error("Access denied. The file may no longer be public.");
-      } else if (error.response?.status === 404) {
-        toast.error("File not found on server.");
-      } else {
-        toast.error("Failed to download file. Please try again.");
-      }
+      console.log("Downloading Failed:", error);
+       toast.error("Failed to download file. Please try again.");
+      
     }
   }
  const openShareModal =()=>{
   setShareModal({
     isOpen :true,
-    link: `${window.location.origin}/file/${fileId}`,
-    
+   // link: window.location.href,
+     link :`${window.location.origin}/file/${fileId}`
   })
  }
   const closeShareModal =()=>{

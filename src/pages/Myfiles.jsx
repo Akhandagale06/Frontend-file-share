@@ -69,10 +69,11 @@ const Myfiles = () => {
     }
   }
 
-    //handle file download
+  //handle file download
   const handleDownload = async(file)=>{
     try {
-      const response = await axios.get(apiEndpoint.DOWNLOAD_FILE(file.id), { responseType:'blob' });
+      const token = await getToken();
+      const response = await axios.get(apiEndpoint.DOWNLOAD_FILE(file.id), { headers: { Authorization: `Bearer ${token}` },responseType:'blob' });
       const url = window.URL.createObjectURL(new Blob([response.data]));
       const link = document.createElement("a");
       link.href = url;
@@ -83,14 +84,8 @@ const Myfiles = () => {
       window.URL.revokeObjectURL(url); //clean up url object
       
     } catch (error) {
-      console.error("Downloading Failed:", error?.response?.status, error?.response?.data, error);
-      if (error.response?.status === 403) {
-        toast.error("Access denied. The file may not be available.");
-      } else if (error.response?.status === 404) {
-        toast.error("File not found on server.");
-      } else {
-        toast.error("Failed to download file. Please try again.");
-      }
+      console.log("Downloading Failed:", error);
+      toast.error("Failed to download file. Please try again.", error.message);
     }
   };
 
@@ -108,20 +103,20 @@ const Myfiles = () => {
     if(!fileId) return;
     try {
       const token = await getToken();
-      const response = await axios.delete(apiEndpoint.DELETE_FILE(deleteConfirmationOpen.fileId), { headers: { 'Authorization': `Bearer ${token}` } });
-      setFiles(files.filter(file=> file.id !== fileId));
-      closeDeleteConfirmation();
+      const response = await axios.delete(apiEndpoint.DELETE_FILE(deleteConfirmationOpen.fileId), { headers: { Authorization: `Bearer ${token}` } });
+      if(response.status === 204){
+        setFiles(files.filter(file=> file.id !== fileId));
+        closeDeleteConfirmation();
+      }
+      else{
+        toast.error("Failed to delete file. Please try again.");
+      }
+      
       toast.success("File deleted successfully");
 
     } catch (error) {
-      console.error("Error deleting file:", error?.response?.status, error?.response?.data, error);
-      if (error.response?.status === 403) {
-        toast.error("Access denied. Please try logging out and back in.");
-      } else if (error.response?.status === 404) {
-        toast.error("File not found.");
-      } else {
-        toast.error("Failed to delete file. Please try again.");
-      }
+      console.log("Error deleting file:", error);
+      toast.error("Failed to delete file. Please try again.", error.message);
     }
   }
 
