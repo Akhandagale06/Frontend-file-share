@@ -72,8 +72,7 @@ const Myfiles = () => {
     //handle file download
   const handleDownload = async(file)=>{
     try {
-      const token = await getToken();
-      const response = await axios.get(apiEndpoint.DOWNLOAD_FILE(file.id), { headers: { 'Authorization': `Bearer ${token}` },responseType:'blob' });
+      const response = await axios.get(apiEndpoint.DOWNLOAD_FILE(file.id), { responseType:'blob' });
       const url = window.URL.createObjectURL(new Blob([response.data]));
       const link = document.createElement("a");
       link.href = url;
@@ -86,7 +85,7 @@ const Myfiles = () => {
     } catch (error) {
       console.error("Downloading Failed:", error?.response?.status, error?.response?.data, error);
       if (error.response?.status === 403) {
-        toast.error("Access denied. Please try logging out and back in.");
+        toast.error("Access denied. The file may not be available.");
       } else if (error.response?.status === 404) {
         toast.error("File not found on server.");
       } else {
