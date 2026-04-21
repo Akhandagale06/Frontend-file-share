@@ -54,9 +54,14 @@ const PublicFileView = () => {
       
 
     } catch (error) {
-      console.log("Downloading Failed:", error);
-       toast.error("Failed to download file. Please try again.");
-      
+      console.error("Downloading Failed:", error?.response?.status, error?.response?.data, error);
+      if (error.response?.status === 403) {
+        toast.error("Access denied. The file may no longer be public.");
+      } else if (error.response?.status === 404) {
+        toast.error("File not found on server.");
+      } else {
+        toast.error("Failed to download file. Please try again.");
+      }
     }
   }
  const openShareModal =()=>{

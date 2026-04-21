@@ -69,7 +69,6 @@ const Myfiles = () => {
     }
   }
 
-  //handle file download
     //handle file download
   const handleDownload = async(file)=>{
     try {
@@ -85,8 +84,14 @@ const Myfiles = () => {
       window.URL.revokeObjectURL(url); //clean up url object
       
     } catch (error) {
-      console.log("Downloading Failed:", error);
-      toast.error("Failed to download file. Please try again.", error.message);
+      console.error("Downloading Failed:", error?.response?.status, error?.response?.data, error);
+      if (error.response?.status === 403) {
+        toast.error("Access denied. Please try logging out and back in.");
+      } else if (error.response?.status === 404) {
+        toast.error("File not found on server.");
+      } else {
+        toast.error("Failed to download file. Please try again.");
+      }
     }
   };
 
@@ -105,19 +110,19 @@ const Myfiles = () => {
     try {
       const token = await getToken();
       const response = await axios.delete(apiEndpoint.DELETE_FILE(deleteConfirmationOpen.fileId), { headers: { 'Authorization': `Bearer ${token}` } });
-      if(response.status === 204){
-        setFiles(files.filter(file=> file.id !== fileId));
-        closeDeleteConfirmation();
-      }
-      else{
-        toast.error("Failed to delete file. Please try again.");
-      }
-      
+      setFiles(files.filter(file=> file.id !== fileId));
+      closeDeleteConfirmation();
       toast.success("File deleted successfully");
 
     } catch (error) {
-      console.log("Error deleting file:", error);
-      toast.error("Failed to delete file. Please try again.", error.message);
+      console.error("Error deleting file:", error?.response?.status, error?.response?.data, error);
+      if (error.response?.status === 403) {
+        toast.error("Access denied. Please try logging out and back in.");
+      } else if (error.response?.status === 404) {
+        toast.error("File not found.");
+      } else {
+        toast.error("Failed to delete file. Please try again.");
+      }
     }
   }
 
