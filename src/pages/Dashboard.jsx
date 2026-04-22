@@ -28,7 +28,7 @@ const MAX_FILES=5;
       setLoading(true);
       try {
         const token = await getToken();
-        console.log("Token :",token)
+       
         
         if (!token) {
           console.error("No token available");
