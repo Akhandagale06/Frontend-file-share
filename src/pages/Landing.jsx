@@ -12,7 +12,6 @@ import { useClerk, useUser } from "@clerk/clerk-react";
 
 const Landing =()=>{
    const {openSignIn,openSignUp}=useClerk();
-  console.log('Clerk openSignIn:', openSignIn);
   const {isSignedIn}=useUser();
   const navigate= useNavigate();
 
