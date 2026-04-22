@@ -1,4 +1,4 @@
-# 💻 Pro-Share Frontend (React)
+# 💻  Frontend (React)
 
 Frontend application for **Pro-Share**, built using React. It provides a user-friendly interface for uploading, managing, and downloading files.
 
