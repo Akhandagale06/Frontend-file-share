@@ -40,8 +40,7 @@ const PublicFileView = () => {
 
   const handleDownload =async ()=>{
     try {
-      
-      const response =await axios.get(apiEndpoint.DOWNLOAD_FILE(fileId),{responseType:'blob'});
+      const response = await axios.get(apiEndpoint.DOWNLOAD_FILE(fileId), { responseType: 'blob' });
       const url = window.URL.createObjectURL(new Blob([response.data]));
       const link = document.createElement("a");
       link.href = url;
@@ -49,15 +48,15 @@ const PublicFileView = () => {
       document.body.appendChild(link);
       link.click();
       link.remove();
-      window.URL.revokeObjectURL(url); //clean up url object
-      
-
+      window.URL.revokeObjectURL(url);
     } catch (error) {
       console.log("Downloading Failed:", error);
        toast.error("Failed to download file. Please try again.");
       
     }
   }
+
+
  const openShareModal =()=>{
   setShareModal({
     isOpen :true,
