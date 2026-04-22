@@ -1,16 +1,79 @@
-# React + Vite
+# 💻 Pro-Share Frontend (React)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Frontend application for **Pro-Share**, built using React. It provides a user-friendly interface for uploading, managing, and downloading files.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Features
 
-## React Compiler
+### 👤 Authentication
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* Clerk authentication (Login/Signup)
+* Secure session handling
 
-## Expanding the ESLint configuration
+### 📁 File Management UI
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+* Upload files to Supabase
+* View and manage uploaded files
+* Download files instantly
+
+### 💳 Payments UI
+
+* Razorpay integration for purchasing credits
+* Real-time payment status
+
+---
+
+## 🛠️ Tech Stack
+
+* React (Vite)
+* Axios
+* Clerk Authentication
+* Tailwind CSS (optional if used)
+
+---
+
+## ⚙️ Setup & Run
+
+### 1️⃣ Install Dependencies
+
+```bash id="f1install"
+npm install
+```
+
+---
+
+### 2️⃣ Configure Environment Variables
+
+```env id="f1env"
+VITE_API_BASE_URL=http://localhost:8080/api/v1.0
+VITE_CLERK_PUBLISHABLE_KEY=your_clerk_key
+VITE_SUPABASE_URL=your_supabase_url
+VITE_SUPABASE_KEY=your_supabase_key
+```
+
+---
+
+### 3️⃣ Run App
+
+```bash id="f1run"
+npm run dev
+```
+
+---
+
+## 📌 Features Overview
+
+* Secure API communication with backend
+* Token-based requests using Clerk
+* File download using direct Supabase URLs
+
+---
+
+## 🔗 Backend API
+
+Make sure backend is running:
+
+```id="f1api"
+http://localhost:8080/api/v1.0
+```
