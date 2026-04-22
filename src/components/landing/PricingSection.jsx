@@ -21,7 +21,7 @@ const PricingSection = ({ pricingPlans, openSignUp }) => {
                             <h3 className="text-xl font-semibold text-gray-900">{plan.name}</h3>
                             <p className="mt-4 flex items-baseline text-gray-900">
                                 <span className="text-4xl font-extrabold tracking-tight">{plan.price}</span>
-                                <span className="ml-1 text-xl font-semibold">/{plan.period}</span>
+                                <span className="ml-1 text-xl font-semibold">{plan.period}</span>
                             </p>
                             <ul role="list" className="mt-6 space-y-6">
                                 {plan.features.map((feature, idx) => (
